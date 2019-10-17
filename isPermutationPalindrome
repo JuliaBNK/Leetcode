@@ -1,0 +1,26 @@
+import java.util.*;
+
+// from another problem; not tested
+
+class Solution {
+    public boolean validPalindrome(String s) {
+        
+        HashSet <Character> set = new HashSet <Character>();
+        
+        for (int i = 0; i < s.length(); i++) {
+            if (set.contains(s.charAt(i))){
+                set.remove(s.charAt(i));
+            }
+            else {
+            set.add(s.charAt(i));
+            }
+        }
+        System.out.println (set.toString());
+        
+        if (set.size() > 2){
+            return false;
+        }
+        
+        return true;
+    }
+}
