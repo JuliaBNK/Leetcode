@@ -1,0 +1,45 @@
+class Solution {
+    public int maximumProduct(int[] nums) {
+    
+      //brute force solution
+       int maxProduct = Integer.MIN_VALUE;
+
+       // calculate the highest product of three numbers
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i+1; j < nums.length; j++) {
+                for (int k = j+1; k < nums.length; k++) {
+                    int product = nums[i]*nums[j]*nums[k]; 
+                    if (product >= maxProduct) {
+                        maxProduct = product;
+                    }
+                }
+            }
+            
+        }
+
+        return maxProduct; 
+        
+        
+        // greedy algorithm
+        
+        int highest = Math.max(nums[0],nums[1]);
+        int lowest = Math.min(nums[0],nums[1]);
+        int highestProductOf2 = nums[0]*nums[1];
+        int lowestProductOf2 = nums[0]*nums[1];
+        int highestProductOf3 = nums[0]*nums[1]*nums[2];
+       
+        // calculate the highest product of three numbers
+        for (int i = 2; i < nums.length; i++){
+            
+            highestProductOf3 = Math.max(highestProductOf3, Math.max(highestProductOf2*nums[i], lowestProductOf2*nums[i]));
+               
+            highestProductOf2 = Math.max(highestProductOf2,  Math.max(highest*nums[i], lowest*nums[i]));
+            lowestProductOf2 = Math.min(lowestProductOf2, Math.min(lowest*nums[i], highest*nums[i]));
+            
+            highest = Math.max(highest, nums[i]);
+            lowest = Math.min(lowest, nums[i]);             
+        }
+        
+        return highestProductOf3;
+    }
+}
