@@ -1,0 +1,23 @@
+class Solution {
+    public int search(int[] nums, int target) {
+        int startindex = 0;
+        int endindex = nums.length - 1;
+        
+        while (startindex <= endindex) {
+            int midindex = startindex + (endindex - startindex)/2;
+            
+            if (target == nums[midindex]){
+                return midindex;
+            }
+            
+            else if (target > nums[midindex]) {
+                startindex = midindex + 1;
+            }
+            
+            else {
+                endindex = midindex - 1;
+            }
+        }    
+        return -1;
+    }
+}
