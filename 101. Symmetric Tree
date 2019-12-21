@@ -1,0 +1,59 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public boolean isSymmetric(TreeNode root) {
+        
+        if (root == null || (root.left == null && root.right == null)) {
+            return true;
+        }
+        if ((root.left == null && root.right != null) || (root.left != null && root.right == null) ){
+            return false;
+        }
+        if (root.left.val != root.right.val) {
+            return false;
+        }
+        ArrayList<String> leftHalf = new ArrayList<String>();
+        ArrayList<String> rightHalf = new ArrayList<String>();
+        leftTraversal(root.left, leftHalf);
+        rightTraversal(root.right, rightHalf);
+        
+        if (leftHalf.size() != rightHalf.size()){
+            return false;
+        }
+        else {
+        for (int i = 0; i < leftHalf.size(); i++) {
+            if (!leftHalf.get(i).equals(rightHalf.get(i))){
+                return false;
+            }
+        }
+        return true;
+        }
+    }
+    
+    private void leftTraversal (TreeNode left, ArrayList<String> list) {
+        if(left != null) {
+            list.add(String.valueOf(left.val));
+            leftTraversal(left.left, list);
+            leftTraversal(left.right, list);
+        } else {
+            list.add("null");
+        }
+    }
+    
+    private void rightTraversal(TreeNode right, ArrayList<String> list) {
+        if (right != null){
+            list.add(String.valueOf(right.val));
+            rightTraversal(right.right, list);
+            rightTraversal(right.left, list);  
+        }else {
+           list.add("null"); 
+        }
+    }
+}
