@@ -1,5 +1,5 @@
 
-# Memoization
+# Memoization, with HashMap
 class Solution {
     public int climbStairs(int n) {
     HashMap <Integer, Integer> map = new HashMap <Integer, Integer>();    
