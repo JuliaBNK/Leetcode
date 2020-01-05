@@ -28,3 +28,17 @@ class Solution {
         return Math.min (cost[cost.length-1], cost[cost.length-2]);
     }
 }
+// out of place 
+class Solution {
+    public int minCostClimbingStairs(int[] cost) {
+        int[] helper = new int[cost.length];
+        helper[0]= cost[0];
+        helper[1]= cost[1];
+        for (int i = 2; i < cost.length; i++){
+            helper[i] = cost[i] + Math.min (helper[i-1], helper[i-2]);
+        }
+        return Math.min(helper[helper.length-1], helper[helper.length-2]);
+    }
+}
+
+
